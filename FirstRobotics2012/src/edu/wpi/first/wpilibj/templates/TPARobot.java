@@ -43,7 +43,9 @@ public class TPARobot extends IterativeRobot {
     TPARobotDriver theRobotDrive;                   // Robot Drive System
     double theDriveDirection;                       // Direction the robot will move
     double theDriveMagnitude;                       // Speed the robot will move at
-    double theDriveRotation;                        // Value the robot will rotate
+    double theDriveRotation;
+    static boolean buttonPressable = true;
+    static boolean flip = false;                    // if the direction and rotation are already flipped.
 
     double afls =0;
     double afrs =0;
@@ -243,7 +245,7 @@ public class TPARobot extends IterativeRobot {
             else{
                 theDriveDirection = 180 + theDriveDirection;
             }
-            theDriveRotation = -theDriveRotation;
+
             theRobotDrive.mecanumDrive_Polar(theDriveMagnitude, theDriveDirection, theDriveRotation);
         }
         if (DEBUG == true){
@@ -344,8 +346,6 @@ public void displaySpeed(){
      * Outputs: the direction and the rotation opposite of the original.
      */  
     
-    static boolean buttonPressable = true;
-    static boolean flip = false;// if the direction and rotation are already flipped.
     
     public boolean change(Joystick aStick){
         if (buttonPressable  && aStick.getRawButton(1)){
